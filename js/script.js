@@ -1,3 +1,4 @@
+
 //setting display properties for the buttons div
 document.getElementById("paginationButtons").style.display = "flex";
 document.getElementById("paginationButtons").style.marginTop = "20px";
@@ -21,7 +22,16 @@ for(var i = 0; i < allItems.length; i++){
 }
 
 // Display first 10 list items by default
-for(var i = 0; i < 10; i++){
+var itemsToDisplay = 0;
+
+if(allItems.length < 10){
+    itemsToDisplay = allItems.length;
+}
+else{
+    itemsToDisplay = 10;
+}
+
+for(var i = 0; i < itemsToDisplay; i++){
     document.getElementsByClassName("contact-list")[0].innerHTML += 
     '<li class="contact-item cf"><div class="contact-details"><img class="avatar" src="'
     + allItemsJson[i].src + '"> <h3>' + allItemsJson[i].h3 + '</h3><span class="email">'
@@ -29,10 +39,11 @@ for(var i = 0; i < 10; i++){
     + allItemsJson[i].date + '</span></div></li>'; 
 }
 
-// counting and inserting page numbers 
-const totalPages = allItems.length % 10  + 1;
+//counting and inserting page numbers 
+console.log(allItems.length - 10);
+const totalPages = Math.ceil((allItems.length - 10)/ 10);
 
-for(var i = 0; i <= totalPages; i++){
+for(var i = 0; i < totalPages; i++){
     let b = document.createElement("button");
     b.textContent = i + 1;
     b.style.width = "25px";
@@ -42,7 +53,7 @@ for(var i = 0; i <= totalPages; i++){
     document.getElementById("paginationButtons").appendChild(b);
 }
 
-//get all buttons and assign event listeners
+// //get all buttons and assign event listeners
 const buttons = document.getElementById("paginationButtons").childNodes;
 
 for(var i = 0; i < buttons.length; i++){
