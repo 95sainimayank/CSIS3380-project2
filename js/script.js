@@ -21,7 +21,7 @@ for(var i = 0; i < allItems.length; i++){
     allItems[i].style.display = "none";
 }
 
-// Display first 10 list items by default
+// Display first 10 or less list items by default
 var itemsToDisplay = 0;
 
 if(allItems.length < 10){
@@ -40,7 +40,6 @@ for(var i = 0; i < itemsToDisplay; i++){
 }
 
 //counting and inserting page numbers 
-console.log(allItems.length - 10);
 const totalPages = Math.ceil((allItems.length - 10)/ 10);
 
 for(var i = 0; i < totalPages; i++){
